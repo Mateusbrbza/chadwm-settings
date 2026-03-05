@@ -1,12 +1,24 @@
+(defpoll weather_temp :interval "1800s"
+  "curl -sf 'https://wttr.in/?format=%t' | tr -d '+'")
+
 (defpoll datetime :interval "1s"
-  "date +'%H:%M | %a |   %d %m %y'")
+  "date +'%H:%M | %a |   %d/%m/%y'")
 
 ; (defpoll weather :interval "1000s"
 ;   "scripts/system weather")
 ;
 
-(defpoll brightness :interval "1s"
-  "scripts/system backlight")
+; cpu temp
+(defpoll cpu_temp :interval "2s"
+  "sensors k10temp-pci-00c3 | awk '/Tctl/ {printf \"%d\", $2}'")
+
+; uptime
+(defpoll uptime :interval "60s"
+  "awk '{s=$1; d=int(s/86400); h=int((s%86400)/3600); m=int((s%3600)/60); if(d>0) printf \"%dd%dh%dm\",d,h,m; else printf \"%dh%dm\",h,m}' /proc/uptime")
+
+; volume
+(defpoll head_vol :interval "1s"
+  "pactl get-sink-volume @DEFAULT_SINK@ | awk '/Volume:/ {gsub(/%/,\"\",$5); print $5}'")
 
 ; pkg related 
 (defpoll pkgUpdates :interval "1000s"

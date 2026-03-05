@@ -146,12 +146,14 @@ static const Key keys[] = {
 
     // screenshot fullscreen and cropped
     {MODKEY|ControlMask,                XK_u,       spawn,
-        SHCMD("maim | xclip -selection clipboard -t image/png")},
+        SHCMD("flameshot full -c")},
     {MODKEY,                            XK_u,       spawn,
-        SHCMD("maim --select | xclip -selection clipboard -t image/png")},
+        SHCMD("flameshot gui")},
 
-    { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
+    { MODKEY,                           XK_space,   spawn,          SHCMD("rofi -show drun") },
     { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
+    { MODKEY,                           XK_s,       spawn,          SHCMD("~/.config/chadwm/scripts/keybindings.sh") },
+    { MODKEY,                           XK_BackSpace, spawn,        SHCMD("/home/mateusbrbza/.config/chadwm/scripts/powermenu.sh") },
 
     // toggle stuff
     { MODKEY,                           XK_b,       togglebar,      {0} },
@@ -212,7 +214,7 @@ static const Key keys[] = {
     { MODKEY,                           XK_m,       setlayout,      {.v = &layouts[2]} },
     { MODKEY|ControlMask,               XK_g,       setlayout,      {.v = &layouts[10]} },
     { MODKEY|ControlMask|ShiftMask,     XK_t,       setlayout,      {.v = &layouts[13]} },
-    { MODKEY,                           XK_space,   setlayout,      {0} },
+    { MODKEY|ControlMask,               XK_space,   setlayout,      {0} },
     { MODKEY|ControlMask,               XK_comma,   cyclelayout,    {.i = -1 } },
     { MODKEY|ControlMask,               XK_period,  cyclelayout,    {.i = +1 } },
     { MODKEY,                           XK_0,       view,           {.ui = ~0 } },
@@ -228,12 +230,15 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,                 XK_w,       setborderpx,    {.i = default_border } },
 
     // kill dwm
-    { MODKEY|ControlMask,               XK_q,       spawn,        SHCMD("killall bar.sh chadwm") },
+    { MODKEY|ShiftMask,                 XK_q,       spawn,        SHCMD("killall bar.sh chadwm") },
 
     // kill window
     { MODKEY,                           XK_q,       killclient,     {0} },
 
-    // restart
+    // recompile and restart
+    { MODKEY|ControlMask,               XK_r,       spawn,          SHCMD("~/.config/chadwm/scripts/recompile.sh") },
+
+    // restart only
     { MODKEY|ShiftMask,                 XK_r,       restart,           {0} },
 
     // hide & restore windows

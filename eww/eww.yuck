@@ -3,8 +3,8 @@
 (include './src/dashboard.yuck')
 
 (defwindow eww
-           :geometry (geometry :x "-70%"
-                               :y "-32%"
-                               :anchor "right bottom")
+           :geometry (geometry :x "-15px"
+                               :y "60px"
+                               :anchor "top right")
            :wm-ignore true
 (dashboard))
