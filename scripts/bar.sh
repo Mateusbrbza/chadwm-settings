@@ -16,9 +16,7 @@ cpu() {
 }
 
 pkg_updates() {
-  #updates=$({ timeout 20 doas xbps-install -un 2>/dev/null || true; } | wc -l) # void
-  updates=$({ timeout 20 checkupdates 2>/dev/null || true; } | wc -l) # arch
-  # updates=$({ timeout 20 aptitude search '~U' 2>/dev/null || true; } | wc -l)  # apt (ubuntu, debian etc)
+  updates=$({ timeout 20 apt list --upgradable 2>/dev/null || true; } | grep -c upgradable) # apt (ubuntu, debian etc)
 
   if [ -z "$updates" ]; then
     printf "  ^c$green^    Fully Updated"
@@ -61,5 +59,5 @@ while true; do
   [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "$updates $(cpu) $(battery) $(mem) $(wlan) $(clock)"
+  sleep 1 && xsetroot -name "$updates $(cpu) $(mem) $(wlan) $(clock)"
 done

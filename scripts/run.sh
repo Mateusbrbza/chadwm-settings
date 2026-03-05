@@ -2,7 +2,7 @@
 
 xrdb merge ~/.Xresources 
 xbacklight -set 10 &
-feh --bg-fill ~/.config/chadwm/wallpaper/catppuccin_mocha.png &
+feh --bg-fill ~/.config/chadwm/wallpaper/degirled.png &
 xset r rate 200 50 &
 picom &
 
