@@ -40,7 +40,7 @@ keybindings="
   Super + Ctrl + Shift + D → Resetar gaps
 
  TAGS (WORKSPACES)
-  Super + 1..9            → Ir para tag 1-9
+  Super + 1..6            → Ir para tag 1-6
   Super + 0               → Ver todas as tags
   Super + Left            → Tag anterior
   Super + Right           → Próxima tag

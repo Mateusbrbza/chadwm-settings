@@ -38,7 +38,7 @@ static const int new_window_attach_on_end = 0; /*  1 means the new window will a
 #define ICONSIZE 19   /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
-static const char *fonts[]          = {"Iosevka:style:medium:size=12" ,"JetBrainsMono Nerd Font Mono:style:medium:size=19" };
+static const char *fonts[]          = {"Iosevka:style:medium:size=14" ,"JetBrainsMono Nerd Font Mono:style:medium:size=18" };
 
 // theme
 #include "themes/tundra.h"
@@ -56,6 +56,7 @@ static const char *colors[][3]      = {
     [SchemeTag3]       = { orange,  black,  black },
     [SchemeTag4]       = { green,   black,  black },
     [SchemeTag5]       = { pink,    black,  black },
+    [SchemeTag6]       = { yellow,  black,  black },
     [SchemeLayout]     = { green,   black,  black },
     [SchemeBtnPrev]    = { green,   black,  black },
     [SchemeBtnNext]    = { yellow,  black,  black },
@@ -63,7 +64,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static char *tags[] = {"󰈹", "󰞷", "󰡨", "󰘦", "󰙯"};
+static char *tags[] = {"󰈹", "󰞷", "󰡨", "󰘦", "󰙯", "󰚀"};
 
 static const char* eww[] = { "eww", "-c", "/home/mateusbrbza/.config/eww", "open" , "eww", NULL };
 
@@ -73,7 +74,7 @@ static const Launcher launchers[] = {
 };
 
 static const int tagschemes[] = {
-    SchemeTag1, SchemeTag2, SchemeTag3, SchemeTag4, SchemeTag5
+    SchemeTag1, SchemeTag2, SchemeTag3, SchemeTag4, SchemeTag5, SchemeTag6
 };
 
 static const unsigned int ulinepad      = 5; /* horizontal padding between the underline and tag */
@@ -137,7 +138,7 @@ static const Layout layouts[] = {
 static const Key keys[] = {
     /* modifier                         key         function        argument */
 
-    // brightness and audio 
+    // brightness and audio
     {0,             XF86XK_AudioLowerVolume,    spawn, {.v = downvol}},
 	{0,             XF86XK_AudioMute, spawn,    {.v = mutevol }},
 	{0,             XF86XK_AudioRaiseVolume,    spawn, {.v = upvol}},
@@ -171,7 +172,7 @@ static const Key keys[] = {
     { MODKEY,                           XK_Left,    shiftview,      {.i = -1 } },
     { MODKEY,                           XK_Right,   shiftview,      {.i = +1 } },
 
-    // change m,cfact sizes 
+    // change m,cfact sizes
     { MODKEY,                           XK_h,       setmfact,       {.f = -0.05} },
     { MODKEY,                           XK_l,       setmfact,       {.f = +0.05} },
     { MODKEY|ShiftMask,                 XK_h,       setcfact,       {.f = +0.25} },
@@ -196,7 +197,7 @@ static const Key keys[] = {
     { MODKEY|ControlMask,               XK_o,       incrogaps,      {.i = +1 } },
     { MODKEY|ControlMask|ShiftMask,     XK_o,       incrogaps,      {.i = -1 } },
 
-    // inner+outer hori, vert gaps 
+    // inner+outer hori, vert gaps
     { MODKEY|ControlMask,               XK_6,       incrihgaps,     {.i = +1 } },
     { MODKEY|ControlMask|ShiftMask,     XK_6,       incrihgaps,     {.i = -1 } },
     { MODKEY|ControlMask,               XK_7,       incrivgaps,     {.i = +1 } },
