@@ -6,6 +6,7 @@ feh --bg-fill ~/.config/chadwm/wallpaper/degirled.png &
 xset r rate 200 50 &
 picom &
 flameshot &
+dunst &
 
 eww -c ~/.config/eww open eww &
 dash ~/.config/chadwm/scripts/bar.sh &
