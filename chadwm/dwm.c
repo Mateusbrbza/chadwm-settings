@@ -109,7 +109,8 @@ enum {
   TabNorm,
   SchemeBtnPrev,
   SchemeBtnNext,
-  SchemeBtnClose
+  SchemeBtnClose,
+  SchemeLauncher
 }; /* color schemes */
 enum {
   NetSupported,
@@ -626,6 +627,17 @@ void buttonpress(XEvent *e) {
 			selmon->previewshow = 0;
 	}
     i = x = 0;
+    for(i = 0; i < LENGTH(launchers); i++) {
+      x += TEXTW(launchers[i].name);
+      if (ev->x < x) {
+        Arg a;
+        a.v = launchers[i].command;
+        spawn(&a);
+        return;
+      }
+    }
+    x += borderpx;
+    i = 0;
     do
       x += TEXTW(tags[i]);
     while (ev->x >= x && ++i < LENGTH(tags));
@@ -639,17 +651,6 @@ void buttonpress(XEvent *e) {
       }
 
 		x += TEXTW(selmon->ltsymbol);
-
-		for(i = 0; i < LENGTH(launchers); i++) {
-			x += TEXTW(launchers[i].name);
-
-			if (ev->x < x) {
-				Arg a;
-				a.v = launchers[i].command;
-				spawn(&a);
-				return;
-			}
-	}
 
   if (ev->x > selmon->ww - (int)TEXTW(stext))
          click = ClkStatusText;
@@ -1496,7 +1497,14 @@ void drawbar(Monitor *m) {
     if (c->isurgent)
       urg |= c->tags;
   }
-  x = borderpx;
+  x = 0;
+  for (i = 0; i < LENGTH(launchers); i++) {
+    w = TEXTW(launchers[i].name);
+    drw_setscheme(drw, scheme[SchemeLauncher]);
+    drw_text(drw, x, 0, w, bh, lrpad / 2, launchers[i].name, 0);
+    x += w;
+  }
+  x += borderpx;
   for (i = 0; i < LENGTH(tags); i++) {
     w = TEXTW(tags[i]);
     drw_setscheme(drw, scheme[occ & 1 << i ? (m->colorfultag ? tagschemes[i] : SchemeSel) : SchemeTag]);
@@ -1516,13 +1524,6 @@ void drawbar(Monitor *m) {
   w = TEXTW(m->ltsymbol);
   drw_setscheme(drw, scheme[SchemeLayout]);
   x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
-
-  	for (i = 0; i < LENGTH(launchers); i++)
-	{
-		w = TEXTW(launchers[i].name);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, launchers[i].name, urg & 1 << i);
-		x += w;
-	}
 
   w = floatbar?mw + m->gappov * 2 - sw - stw - x:mw - sw - stw - x;
   if (w > bh_n) {

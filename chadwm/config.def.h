@@ -38,7 +38,7 @@ static const int new_window_attach_on_end = 0; /*  1 means the new window will a
 #define ICONSIZE 19   /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
-static const char *fonts[]          = {"Iosevka:style:medium:size=14" ,"JetBrainsMono Nerd Font Mono:style:medium:size=18" };
+static const char *fonts[]          = {"Iosevka:style:medium:size=14" ,"JetBrainsMono Nerd Font Mono:style:medium:size=16" };
 
 // theme
 #include "themes/tundra.h"
@@ -46,13 +46,13 @@ static const char *fonts[]          = {"Iosevka:style:medium:size=14" ,"JetBrain
 static const char *colors[][3]      = {
     /*                     fg       bg      border */
     [SchemeNorm]       = { gray3,   black,  gray2 },
-    [SchemeSel]        = { gray4,   blue,   gray3  },
+    [SchemeSel]        = { gray4,   blue,   gray3 },
     [SchemeTitle]      = { white,   black,  black }, // active window title
     [TabSel]           = { blue,    gray2,  black },
     [TabNorm]          = { gray3,   black,  black },
     [SchemeTag]        = { gray3,   black,  black },
-    [SchemeTag1]       = { blue,    black,  black },
-    [SchemeTag2]       = { red,     black,  black },
+    [SchemeTag1]       = { red,     black,  black },
+    [SchemeTag2]       = { blue,    black,  black },
     [SchemeTag3]       = { orange,  black,  black },
     [SchemeTag4]       = { green,   black,  black },
     [SchemeTag5]       = { pink,    black,  black },
@@ -61,6 +61,7 @@ static const char *colors[][3]      = {
     [SchemeBtnPrev]    = { green,   black,  black },
     [SchemeBtnNext]    = { yellow,  black,  black },
     [SchemeBtnClose]   = { red,     black,  black },
+    [SchemeLauncher]   = { black,   blue,   black },
 };
 
 /* tagging */
