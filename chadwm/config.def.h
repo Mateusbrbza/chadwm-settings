@@ -1,5 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
+/*
+ * Para recompilar e reiniciar o chadwm após mudanças neste arquivo:
+ *
+ *   cd /home/mateusbrbza/.config/chadwm/chadwm && sudo make install
+ *
+ * Depois reinicie o chadwm com: Super+Shift+R
+ */
+
 #include <X11/XF86keysym.h>
 
 /* appearance */
@@ -35,10 +43,10 @@ static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "togg
 static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
-#define ICONSIZE 19   /* icon size */
-#define ICONSPACING 8 /* space between icon and title */
+#define ICONSIZE 18   /* icon size */
+#define ICONSPACING 6 /* space between icon and title */
 
-static const char *fonts[]          = {"Iosevka:style:medium:size=14" ,"JetBrainsMono Nerd Font Mono:style:medium:size=16" };
+static const char *fonts[] = {"JetBrainsMono Nerd Font Mono:style=Medium:size=12"};
 
 // theme
 #include "themes/tundra.h"
@@ -237,10 +245,7 @@ static const Key keys[] = {
     // kill window
     { MODKEY,                           XK_q,       killclient,     {0} },
 
-    // recompile and restart
-    { MODKEY|ControlMask,               XK_r,       spawn,          SHCMD("~/.config/chadwm/scripts/recompile.sh") },
-
-    // restart only
+    // restart
     { MODKEY|ShiftMask,                 XK_r,       restart,           {0} },
 
     // hide & restore windows

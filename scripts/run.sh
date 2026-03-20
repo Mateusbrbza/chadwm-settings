@@ -1,6 +1,7 @@
 #!/bin/sh
 
 xrdb merge ~/.Xresources 
+export QT_FONT_DPI=96
 xbacklight -set 10 &
 feh --bg-fill ~/.config/chadwm/wallpaper/degirled.png &
 xset r rate 200 50 &
