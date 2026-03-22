@@ -160,6 +160,9 @@ static const Key keys[] = {
     {MODKEY,                            XK_u,       spawn,
         SHCMD("flameshot gui")},
 
+    // toggle keyboard layout (us/br)
+    { MODKEY|ShiftMask,               XK_BackSpace, spawn,         SHCMD("setxkbmap -query | grep -q 'layout:.*br' && setxkbmap us || setxkbmap br") },
+
     { MODKEY,                           XK_space,   spawn,          SHCMD("rofi -show drun") },
     { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
     { MODKEY,                           XK_s,       spawn,          SHCMD("~/.config/chadwm/scripts/keybindings.sh") },
